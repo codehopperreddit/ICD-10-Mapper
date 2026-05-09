@@ -43,3 +43,6 @@ data/*.sqlite
 # coverage
 coverage/
 .nyc_output/
+
+#instructions
+INFRASTRUCTURE.md

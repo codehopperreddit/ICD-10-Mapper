@@ -5,7 +5,7 @@ main = "apps/api/src/index.ts"
 compatibility_date = "2025-01-15"
 compatibility_flags = ["nodejs_compat"]
 workers_dev = true
-account_id = ""
+account_id = "7ceea7b5681566fa14c8b096c42d4b40"
 
 [observability]
 enabled = true
@@ -14,13 +14,13 @@ enabled = true
 [[d1_databases]]
 binding = "DB"
 database_name = "icd-mapper"
-database_id = "REPLACE_WITH_D1_ID"
+database_id = "2a8d76f1-f345-4768-9d00-57f0f6b1bdc2"
 migrations_dir = "apps/api/migrations"
 
 # --- KV (cache + rate limiting) ---
 [[kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_WITH_KV_ID"
+id = "1b77026983ba42b8aa93536f09a35187"
 
 # --- R2 (CSV uploads/downloads) ---
 [[r2_buckets]]
@@ -48,12 +48,12 @@ WEB_ORIGIN = "https://staging.icd-mapper.pages.dev"
 [[env.staging.d1_databases]]
 binding = "DB"
 database_name = "icd-mapper-staging"
-database_id = "REPLACE_WITH_STAGING_D1_ID"
+database_id = "8fc74ffe-663b-4f04-abec-f9e5b29e90a4"
 migrations_dir = "apps/api/migrations"
 
 [[env.staging.kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_WITH_STAGING_KV_ID"
+id = "1b77026983ba42b8aa93536f09a35187"
 
 [[env.staging.r2_buckets]]
 binding = "STORAGE"
