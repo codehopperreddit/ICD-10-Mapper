@@ -1,0 +1,7 @@
+.next/
+.vercel/
+.open-next/
+out/
+node_modules/
+.env*.local
+.dev.vars

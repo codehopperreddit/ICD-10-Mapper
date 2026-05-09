@@ -1,0 +1,26 @@
+{
+  "name": "icd-mapper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ICD-10-CM mapping SaaS on Cloudflare (Pages + Workers + D1 + R2 + KV)",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "pnpm --filter @icd-mapper/web dev",
+    "dev:api": "pnpm --filter @icd-mapper/api dev",
+    "build:web": "pnpm --filter @icd-mapper/web build",
+    "build:api": "pnpm --filter @icd-mapper/api build",
+    "deploy:web": "pnpm --filter @icd-mapper/web deploy",
+    "deploy:api": "pnpm --filter @icd-mapper/api deploy",
+    "db:migrate": "pnpm --filter @icd-mapper/api db:migrate",
+    "db:seed": "pnpm --filter @icd-mapper/api db:seed",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  },
+  "packageManager": "pnpm@9.7.0"
+}

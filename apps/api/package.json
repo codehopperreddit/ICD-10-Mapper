@@ -1,0 +1,29 @@
+{
+  "name": "@icd-mapper/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev --local --persist-to .wrangler/state",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "db:migrate": "wrangler d1 migrations apply icd-mapper",
+    "db:migrate:local": "wrangler d1 migrations apply icd-mapper --local",
+    "db:seed": "node --experimental-strip-types scripts/seed.ts",
+    "db:seed:local": "node --experimental-strip-types scripts/seed.ts --local",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'no linter configured'"
+  },
+  "dependencies": {
+    "@icd-mapper/shared": "workspace:*",
+    "hono": "^4.6.10",
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250115.0",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.95.0"
+  }
+}
