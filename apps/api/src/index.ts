@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import searchRoute from "./routes/search";
+import publicRoute from "./routes/public";
 import bulkRoute from "./routes/bulk";
 import keysRoute from "./routes/keys";
 import meRoute from "./routes/me";
@@ -10,10 +11,13 @@ import type { Env, Variables } from "./types";
 const app = new Hono<{ Bindings: Env; Variables: Variables }>();
 
 app.use("*", async (c, next) => {
+  // The /api/public/* routes register their own permissive CORS handler
+  // because they are meant to be called from any origin.
+  if (c.req.path.startsWith("/api/public/")) return next();
+
   const origin = c.env.WEB_ORIGIN ?? "*";
   const corsHandler = cors({
     origin: (req) => {
-      // Allow the configured web origin and localhost for dev.
       if (req === origin) return req;
       if (req.startsWith("http://localhost")) return req;
       return null;
@@ -36,6 +40,7 @@ app.get("/", (c) =>
 
 app.get("/health", (c) => c.json({ ok: true, ts: new Date().toISOString() }));
 
+app.route("/api/public", publicRoute);
 app.route("/api/search", searchRoute);
 app.route("/api/bulk-map", bulkRoute);
 app.route("/api/keys", keysRoute);
