@@ -30,6 +30,7 @@ bucket_name = "icd-mapper-storage"
 [vars]
 ENVIRONMENT = "production"
 WEB_ORIGIN = "https://icd-mapper.pages.dev"
+CLERK_PUBLISHABLE_KEY = "pk_test_dW5pZmllZC1zaGVwaGVyZC03Mi5jbGVyay5hY2NvdW50cy5kZXYk"
 # Public Clerk publishable key is set here; secrets are set via `wrangler secret put`:
 #   CLERK_SECRET_KEY
 #   CLERK_PUBLISHABLE_KEY (also OK as var)
