@@ -1,6 +1,6 @@
 # Root wrangler.toml for the ICD Mapper API Worker.
 # The Next.js app on Cloudflare Pages has its own wrangler config in apps/web.
-name = "icd-mapper-api"
+name = "icd-mapper"
 main = "apps/api/src/index.ts"
 compatibility_date = "2025-01-15"
 compatibility_flags = ["nodejs_compat"]
