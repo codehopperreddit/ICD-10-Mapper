@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@icd-mapper/shared": ["../../packages/shared/src/index.ts"],
