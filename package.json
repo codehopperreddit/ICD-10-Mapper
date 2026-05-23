@@ -20,7 +20,8 @@
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "wrangler": "^3.95.0"
   },
   "packageManager": "pnpm@9.7.0"
 }
