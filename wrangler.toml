@@ -10,6 +10,12 @@ account_id = "7ceea7b5681566fa14c8b096c42d4b40"
 [observability]
 enabled = true
 
+# --- Scheduled ingest ---
+# Daily at 04:00 UTC: pull the latest CMS ICD-10-CM mappings CSV from R2
+# (under `data/raw/`) and upsert into D1. Etag-skips when unchanged.
+[triggers]
+crons = ["0 4 * * *"]
+
 # --- D1 (SQLite with FTS5) ---
 [[d1_databases]]
 binding = "DB"
@@ -31,6 +37,8 @@ bucket_name = "icd-mapper-storage"
 ENVIRONMENT = "production"
 WEB_ORIGIN = "https://icd-mapper.pages.dev"
 CLERK_PUBLISHABLE_KEY = "pk_test_dW5pZmllZC1zaGVwaGVyZC03Mi5jbGVyay5hY2NvdW50cy5kZXYk"
+# R2 prefix the cron handler scans for the newest *.csv mappings file.
+INGEST_R2_PREFIX = "data/raw/"
 # Public Clerk publishable key is set here; secrets are set via `wrangler secret put`:
 #   CLERK_SECRET_KEY
 #   CLERK_PUBLISHABLE_KEY (also OK as var)
@@ -38,6 +46,7 @@ CLERK_PUBLISHABLE_KEY = "pk_test_dW5pZmllZC1zaGVwaGVyZC03Mi5jbGVyay5hY2NvdW50cy5
 #   PADDLE_WEBHOOK_SECRET
 #   RAZORPAY_KEY_ID
 #   RAZORPAY_KEY_SECRET
+#   ADMIN_TOKEN                  (gates POST /api/admin/* — e.g. manual ingest)
 
 # --- Staging environment ---
 [env.staging]
@@ -45,6 +54,11 @@ name = "icd-mapper-api-staging"
 [env.staging.vars]
 ENVIRONMENT = "staging"
 WEB_ORIGIN = "https://staging.icd-mapper.pages.dev"
+INGEST_R2_PREFIX = "data/raw/"
+
+# Staging runs the same daily ingest.
+[env.staging.triggers]
+crons = ["0 4 * * *"]
 
 [[env.staging.d1_databases]]
 binding = "DB"

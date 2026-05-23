@@ -6,3 +6,4 @@ PADDLE_WEBHOOK_SECRET=pdl_ntfset_xxx
 RAZORPAY_KEY_ID=rzp_test_xxx
 RAZORPAY_KEY_SECRET=rzp_secret_xxx
 WEB_ORIGIN=http://localhost:3000
+ADMIN_TOKEN=dev_admin_token_change_me
