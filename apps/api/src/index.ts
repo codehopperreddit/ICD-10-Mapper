@@ -30,7 +30,9 @@ app.use("*", async (c, next) => {
   return corsHandler(c, next);
 });
 
-app.get("/", (c) =>
+// GET / is served from apps/api/public/index.html via the [assets] block in
+// wrangler.toml. The JSON metadata for the API itself moved to /api/info.
+app.get("/api/info", (c) =>
   c.json({
     name: "icd-mapper-api",
     env: c.env.ENVIRONMENT,

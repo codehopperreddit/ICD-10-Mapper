@@ -10,6 +10,14 @@ account_id = "7ceea7b5681566fa14c8b096c42d4b40"
 [observability]
 enabled = true
 
+# --- Static assets (the landing page) ---
+# Files under apps/api/public are served directly by the Workers runtime for any
+# request path they match (e.g. GET / -> index.html). API paths under /api/* and
+# /health are NOT in the assets directory, so they fall through to the Worker.
+[assets]
+directory = "./apps/api/public"
+not_found_handling = "none"
+
 # --- D1 (SQLite with FTS5) ---
 [[d1_databases]]
 binding = "DB"
