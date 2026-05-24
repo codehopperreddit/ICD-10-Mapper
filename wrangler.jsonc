@@ -17,10 +17,9 @@
   },
   "observability": { "enabled": true },
   "vars": {
-    // Emails allowed to hit admin-only routes (POST /api/admin/ingest). Edit to taste.
-    "ADMIN_EMAILS": "sagnikchatterjee00@gmail.com",
-    // R2 prefix the admin ingest scans for the newest *.csv mappings file.
-    "INGEST_R2_PREFIX": "data/raw/"
+    // Emails surfaced as admins by GET /api/me (drives any admin UI). Edit to taste.
+    // CSV ingestion lives in the separate workers/ingest-worker project.
+    "ADMIN_EMAILS": "sagnikchatterjee00@gmail.com"
   },
   // Runtime secrets are set via the Cloudflare dashboard or `wrangler secret put`:
   //   CLERK_SECRET_KEY   PADDLE_WEBHOOK_SECRET   RAZORPAY_KEY_SECRET

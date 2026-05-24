@@ -6,6 +6,8 @@ import { logUsage } from "@/lib/server/usage-log";
 import { searchIcd } from "@/lib/server/search";
 import { json, apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 const SEARCH_CACHE_TTL = 60 * 60;
 

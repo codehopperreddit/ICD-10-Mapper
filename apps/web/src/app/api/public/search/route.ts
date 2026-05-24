@@ -3,6 +3,8 @@ import { getEnv } from "@/lib/server/env";
 import { searchIcd } from "@/lib/server/search";
 import { json, apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 const PUBLIC_DAILY_LIMIT = 20;
 const SEARCH_CACHE_TTL = 60 * 60;

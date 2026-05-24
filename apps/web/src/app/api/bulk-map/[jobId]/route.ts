@@ -4,6 +4,8 @@ import { resolveAuth } from "@/lib/server/auth";
 import { signDownloadToken } from "@/lib/server/r2";
 import { json, apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 export async function GET(
   req: Request,

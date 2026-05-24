@@ -2,6 +2,8 @@ import { getEnv } from "@/lib/server/env";
 import { verifyDownloadToken } from "@/lib/server/r2";
 import { apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 // No session auth here — the signed token IS the authorization.
 export async function GET(

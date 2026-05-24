@@ -1,8 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-// Dashboard pages require a session (redirect to sign-in). API routes under
-// /api/* and the public /webhooks do their own auth checks and return JSON,
-// so they're not force-protected here.
+// Run Clerk ONLY on routes that actually use the session: the dashboard and the
+// authenticated API. Public routes (/, /docs, /sign-in, /sign-up,
+// /api/public/*, /webhooks/*) never invoke Clerk, so the marketing site and the
+// public demo work even if CLERK_SECRET_KEY isn't set.
 const isProtected = createRouteMatcher(["/dashboard(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
@@ -13,8 +14,10 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    "/((?!_next|.*\\..*).*)",
-    "/",
-    "/(api|trpc)(.*)",
+    "/dashboard(.*)",
+    "/api/search",
+    "/api/me(.*)",
+    "/api/keys(.*)",
+    "/api/bulk-map(.*)",
   ],
 };

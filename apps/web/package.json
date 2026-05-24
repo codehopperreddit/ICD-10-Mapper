@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "opennextjs-cloudflare build --config ../../wrangler.jsonc",
-    "build:next": "next build",
+    "build": "next build",
+    "build:cf": "opennextjs-cloudflare build --config ../../wrangler.jsonc",
     "start": "next start",
     "preview": "opennextjs-cloudflare preview --config ../../wrangler.jsonc",
     "deploy": "opennextjs-cloudflare deploy --config ../../wrangler.jsonc",

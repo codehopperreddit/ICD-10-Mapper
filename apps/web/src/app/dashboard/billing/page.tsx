@@ -3,6 +3,8 @@ import { getEnv } from "@/lib/server/env";
 import { getSessionAuth } from "@/lib/server/auth";
 import { CheckoutButtons } from "@/components/CheckoutButtons";
 
+export const dynamic = "force-dynamic";
+
 
 export default async function BillingPage() {
   const env = getEnv();
