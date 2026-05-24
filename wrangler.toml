@@ -1,6 +1,13 @@
 # Root wrangler.toml for the ICD Mapper API Worker.
 # The Next.js app on Cloudflare Pages has its own wrangler config in apps/web.
-name = "icd-mapper"
+#
+# IMPORTANT: this Worker's name MUST differ from the Pages project name
+# (`icd-mapper`). They previously shared the name `icd-mapper`, so every
+# Workers Build redeployed the API on top of the Pages site and the landing
+# page started returning the API's JSON. The frontend expects the API at
+# `icd-mapper-api.workers.dev` (see apps/web/.env.production NEXT_PUBLIC_API_URL
+# and the staging worker `icd-mapper-api-staging` below).
+name = "icd-mapper-api"
 main = "apps/api/src/index.ts"
 compatibility_date = "2025-01-15"
 compatibility_flags = ["nodejs_compat"]
