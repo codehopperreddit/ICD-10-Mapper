@@ -14,7 +14,7 @@ export function ApiKeysManager() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/proxy/api/keys");
+      const res = await fetch("/api/keys");
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as { message?: string };
         throw new Error(body.message ?? `HTTP ${res.status}`);
@@ -37,7 +37,7 @@ export function ApiKeysManager() {
     if (!newName.trim()) return;
     setError(null);
     try {
-      const res = await fetch("/api/proxy/api/keys", {
+      const res = await fetch("/api/keys", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newName.trim() }),
@@ -58,7 +58,7 @@ export function ApiKeysManager() {
   async function onRevoke(id: string) {
     if (!confirm("Revoke this key? Apps using it will start failing immediately.")) return;
     try {
-      const res = await fetch(`/api/proxy/api/keys/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/keys/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       await load();
     } catch (err) {

@@ -7,8 +7,9 @@ export const metadata = {
   description: "REST API reference for the ICD Mapper service.",
 };
 
+// The API is served same-origin from this Pages app (e.g. https://icd-mapper.pages.dev/api/*).
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "https://icd-mapper-api.workers.dev";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://icd-mapper.pages.dev";
 
 export default function DocsPage() {
   return (

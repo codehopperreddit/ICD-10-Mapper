@@ -3,9 +3,6 @@
 import { useState } from "react";
 import type { IcdMatch, SearchResponse } from "@icd-mapper/shared";
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "https://icd-mapper-api.workers.dev";
-
 const EXAMPLES = [
   "type 2 diabetes with neuropathy",
   "acute myocardial infarction",
@@ -31,7 +28,7 @@ export function PublicSearchDemo() {
     setLastQuery(text);
     try {
       const res = await fetch(
-        `${API_URL}/api/public/search?q=${encodeURIComponent(text)}&limit=5`,
+        `/api/public/search?q=${encodeURIComponent(text)}&limit=5`,
         { cache: "no-store" }
       );
       const rem = res.headers.get("X-RateLimit-Remaining");

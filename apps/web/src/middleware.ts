@@ -1,9 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtected = createRouteMatcher([
-  "/dashboard(.*)",
-  "/api/proxy(.*)",
-]);
+// Dashboard pages require a session (redirect to sign-in). API routes under
+// /api/* and the public /webhooks do their own auth checks and return JSON,
+// so they're not force-protected here.
+const isProtected = createRouteMatcher(["/dashboard(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtected(req)) {

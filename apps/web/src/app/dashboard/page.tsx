@@ -1,21 +1,36 @@
-import { auth } from "@clerk/nextjs/server";
 import { TIERS } from "@icd-mapper/shared";
 import type { UsageStats } from "@icd-mapper/shared";
-import { api } from "@/lib/api";
+import { getEnv } from "@/lib/server/env";
+import { getSessionAuth } from "@/lib/server/auth";
 import { UsageChart } from "@/components/UsageChart";
 
 export const runtime = "edge";
 
 export default async function DashboardPage() {
-  const { getToken } = await auth();
-  const token = await getToken();
-  if (!token) return null;
+  const env = getEnv();
+  const auth = await getSessionAuth(env);
+  if (!auth) return null;
 
-  const me = (await api.me(token)) as {
-    user: { id: string; email: string; tier: keyof typeof TIERS };
+  const limit = TIERS[auth.tier].dailyLimit;
+  const today = new Date().toISOString().slice(0, 10);
+  const usedToday = Number((await env.CACHE.get(`rl:${auth.userId}:${today}`)) ?? 0);
+  const { results } = await env.DB.prepare(
+    `SELECT date(timestamp) AS date, COUNT(*) AS count
+     FROM usage_logs
+     WHERE user_id = ?1 AND timestamp >= datetime('now', '-30 days')
+     GROUP BY date(timestamp)
+     ORDER BY date(timestamp) ASC`
+  )
+    .bind(auth.userId)
+    .all<{ date: string; count: number }>();
+
+  const usage: UsageStats = {
+    tier: auth.tier,
+    dailyLimit: limit,
+    usedToday,
+    byDay: results ?? [],
   };
-  const usage = (await api.usage(token)) as UsageStats;
-  const tierConfig = TIERS[me.user.tier];
+  const tierConfig = TIERS[auth.tier];
 
   return (
     <div className="space-y-6">

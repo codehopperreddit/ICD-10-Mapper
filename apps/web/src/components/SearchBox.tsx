@@ -15,7 +15,7 @@ export function SearchBox() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/proxy/api/search?q=${encodeURIComponent(q)}`);
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as { message?: string };
         throw new Error(body.message ?? `HTTP ${res.status}`);

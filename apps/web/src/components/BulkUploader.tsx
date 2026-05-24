@@ -19,7 +19,7 @@ export function BulkUploader() {
     try {
       const fd = new FormData();
       fd.append("file", file);
-      const res = await fetch("/api/proxy/api/bulk-map", { method: "POST", body: fd });
+      const res = await fetch("/api/bulk-map", { method: "POST", body: fd });
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as { message?: string };
         throw new Error(body.message ?? `HTTP ${res.status}`);
@@ -39,7 +39,7 @@ export function BulkUploader() {
     let cancelled = false;
     const tick = async () => {
       try {
-        const res = await fetch(`/api/proxy/api/bulk-map/${job.id}`);
+        const res = await fetch(`/api/bulk-map/${job.id}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = (await res.json()) as BulkJobResponse;
         if (cancelled) return;

@@ -9,12 +9,15 @@
     "preview": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
     "pages:build": "npx @cloudflare/next-on-pages",
     "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static --project-name=icd-mapper",
+    "db:migrate": "wrangler d1 migrations apply icd-mapper --remote",
+    "db:migrate:local": "wrangler d1 migrations apply icd-mapper --local",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.9.0",
     "@icd-mapper/shared": "workspace:*",
+    "nanoid": "^5.0.7",
     "next": "14.2.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
