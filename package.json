@@ -8,20 +8,18 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "pnpm --filter @icd-mapper/web dev",
     "dev:web": "pnpm --filter @icd-mapper/web dev",
-    "dev:api": "pnpm --filter @icd-mapper/api dev",
     "build:web": "pnpm --filter @icd-mapper/web build",
-    "build:api": "pnpm --filter @icd-mapper/api build",
     "deploy:web": "pnpm --filter @icd-mapper/web deploy",
-    "deploy:api": "pnpm --filter @icd-mapper/api deploy",
-    "db:migrate": "pnpm --filter @icd-mapper/api db:migrate",
-    "db:seed": "pnpm --filter @icd-mapper/api db:seed",
+    "db:migrate": "wrangler d1 migrations apply icd-mapper --remote",
+    "db:migrate:local": "wrangler d1 migrations apply icd-mapper --local",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
     "typescript": "^5.5.4",
-    "wrangler": "^3.95.0"
+    "wrangler": "^4.86.0"
   },
   "packageManager": "pnpm@9.7.0"
 }

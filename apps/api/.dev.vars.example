@@ -1,8 +1,0 @@
-# Local-only secrets for `wrangler dev`. Copy to `.dev.vars` (gitignored).
-CLERK_SECRET_KEY=sk_test_xxxxx
-CLERK_PUBLISHABLE_KEY=pk_test_xxxxx
-PADDLE_API_KEY=pdl_xxx
-PADDLE_WEBHOOK_SECRET=pdl_ntfset_xxx
-RAZORPAY_KEY_ID=rzp_test_xxx
-RAZORPAY_KEY_SECRET=rzp_secret_xxx
-WEB_ORIGIN=http://localhost:3000

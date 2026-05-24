@@ -1,6 +1,5 @@
 import { ApiKeysManager } from "@/components/ApiKeysManager";
 
-export const runtime = "edge";
 
 export default function KeysPage() {
   return (

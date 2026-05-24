@@ -2,7 +2,6 @@ import Link from "next/link";
 import { TIERS } from "@icd-mapper/shared";
 import { PublicSearchDemo } from "@/components/PublicSearchDemo";
 
-export const runtime = "edge";
 
 export default function LandingPage() {
   return (
