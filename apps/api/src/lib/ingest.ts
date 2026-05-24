@@ -1,4 +1,4 @@
-import { categoryFor, chapterFor, formatCode, isIcdCode } from "@icd-mapper/shared";
+import { categoryFor, chapterFor, formatCode, isIcdCode } from "./icd-classify";
 import type { Env } from "../types";
 
 /**
