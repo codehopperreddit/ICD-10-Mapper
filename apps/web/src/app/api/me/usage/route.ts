@@ -4,6 +4,8 @@ import { getEnv } from "@/lib/server/env";
 import { resolveAuth } from "@/lib/server/auth";
 import { json, apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 export async function GET(req: Request): Promise<Response> {
   const env = getEnv();

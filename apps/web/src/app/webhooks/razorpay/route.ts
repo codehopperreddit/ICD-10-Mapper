@@ -10,6 +10,8 @@ import {
 } from "@/lib/server/users";
 import { json, apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 interface RazorpayEvent {
   event: string;

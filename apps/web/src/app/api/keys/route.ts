@@ -8,6 +8,8 @@ import type { AuthContext } from "@/lib/server/auth";
 import { generateApiKey, hashApiKey } from "@/lib/server/keys";
 import { json, apiError } from "@/lib/server/respond";
 
+export const dynamic = "force-dynamic";
+
 
 /** Key management always requires a session (never an API key) + a paid tier. */
 async function gate(req: Request): Promise<Response | { env: Env; auth: AuthContext }> {
