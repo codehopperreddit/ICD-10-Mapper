@@ -19,7 +19,6 @@ export interface Env {
   STORAGE: R2Bucket;
 
   // Vars
-  INGEST_R2_PREFIX?: string;
   /** Comma-separated list of emails allowed to hit admin-only routes. */
   ADMIN_EMAILS?: string;
 

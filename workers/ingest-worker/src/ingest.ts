@@ -1,16 +1,15 @@
 import type { D1PreparedStatement, R2Object } from "@cloudflare/workers-types";
 import { categoryFor, chapterFor, formatCode, isIcdCode } from "./icd-classify";
-import type { Env } from "./env";
+import type { Env } from "./types";
 
 /**
  * Ingest of the yearly CMS "ICD-10-CM Codes, ESRD, CMS-HCC and RxHCC Models"
  * mappings spreadsheet (saved as CSV) into D1.
  *
- * The file lives in R2 under STORAGE/data/raw/*.csv. `ingestLatest` picks the
- * most-recently-uploaded CSV under that prefix, checks the etag against the
- * last completed import (skip when unchanged), upserts canonical codes into
- * `icd10_codes`, rewrites the many-to-many `icd10_hcc_mappings` rows, and
- * records the run in `icd_imports`.
+ * Picks the most-recently-uploaded CSV under STORAGE/<prefix>, checks the etag
+ * against the last completed import (skip when unchanged), upserts canonical
+ * codes into `icd10_codes`, rewrites the many-to-many `icd10_hcc_mappings`
+ * rows, and records the run in `icd_imports`.
  */
 
 export const DEFAULT_INGEST_PREFIX = "data/raw/";
