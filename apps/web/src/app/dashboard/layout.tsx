@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 
-export const runtime = "edge";
 
 const NAV = [
   { href: "/dashboard", label: "Overview", icon: HomeIcon },

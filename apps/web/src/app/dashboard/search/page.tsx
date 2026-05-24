@@ -1,6 +1,5 @@
 import { SearchBox } from "@/components/SearchBox";
 
-export const runtime = "edge";
 
 export default function SearchPage() {
   return (

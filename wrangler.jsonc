@@ -1,0 +1,37 @@
+// Cloudflare Worker config for the ICD Mapper app (Next.js via OpenNext).
+//
+// One Worker named `icd-mapper` serves the whole app: the Next.js frontend
+// AND the API route handlers (apps/web/src/app/api/**). It is built by
+// `opennextjs-cloudflare build` (see apps/web "build" script) into
+// apps/web/.open-next, and deployed from the repo root via
+// `wrangler versions upload`, which reads this file.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "icd-mapper",
+  "main": "apps/web/.open-next/worker.js",
+  "compatibility_date": "2025-03-25",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "apps/web/.open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": { "enabled": true },
+  "vars": {
+    // Emails allowed to hit admin-only routes (POST /api/admin/ingest). Edit to taste.
+    "ADMIN_EMAILS": "sagnikchatterjee00@gmail.com",
+    // R2 prefix the admin ingest scans for the newest *.csv mappings file.
+    "INGEST_R2_PREFIX": "data/raw/"
+  },
+  // Runtime secrets are set via the Cloudflare dashboard or `wrangler secret put`:
+  //   CLERK_SECRET_KEY   PADDLE_WEBHOOK_SECRET   RAZORPAY_KEY_SECRET
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "icd-mapper",
+      "database_id": "2a8d76f1-f345-4768-9d00-57f0f6b1bdc2",
+      "migrations_dir": "apps/web/migrations"
+    }
+  ],
+  "kv_namespaces": [{ "binding": "CACHE", "id": "1b77026983ba42b8aa93536f09a35187" }],
+  "r2_buckets": [{ "binding": "STORAGE", "bucket_name": "icd-mapper-storage" }]
+}

@@ -11,7 +11,6 @@ import { searchIcd } from "@/lib/server/search";
 import { inputKey, outputKey } from "@/lib/server/r2";
 import { json, apiError } from "@/lib/server/respond";
 
-export const runtime = "edge";
 
 const DIAGNOSIS_COLUMN = "diagnosis_text";
 

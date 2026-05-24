@@ -1,4 +1,4 @@
-import { getRequestContext } from "@cloudflare/next-on-pages";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type {
   D1Database,
   KVNamespace,
@@ -7,9 +7,10 @@ import type {
 } from "@cloudflare/workers-types";
 
 /**
- * Cloudflare bindings + secrets available to the Pages Functions (route
- * handlers). Bindings are declared in apps/web/wrangler.toml; secrets are set
- * via the Cloudflare Pages dashboard or `wrangler pages secret put`.
+ * Cloudflare bindings + secrets available to the Worker (Next.js route handlers
+ * and server components, via OpenNext). Bindings are declared in the root
+ * wrangler.jsonc; secrets are set via the Cloudflare dashboard or
+ * `wrangler secret put`.
  */
 export interface Env {
   // Bindings
@@ -30,10 +31,11 @@ export interface Env {
 
 /** Access Cloudflare bindings from within a route handler / server component. */
 export function getEnv(): Env {
-  return getRequestContext().env as unknown as Env;
+  return getCloudflareContext().env as unknown as Env;
 }
 
 /** Cloudflare ExecutionContext — use `ctx.waitUntil(...)` for background work. */
 export function getExecutionCtx(): ExecutionContext {
-  return getRequestContext().ctx as unknown as ExecutionContext;
+  return getCloudflareContext().ctx as unknown as ExecutionContext;
 }
+

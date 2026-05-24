@@ -10,7 +10,6 @@ import {
 } from "@/lib/server/users";
 import { json, apiError } from "@/lib/server/respond";
 
-export const runtime = "edge";
 
 interface RazorpayEvent {
   event: string;

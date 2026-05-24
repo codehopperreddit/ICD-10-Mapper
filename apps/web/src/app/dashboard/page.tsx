@@ -4,7 +4,6 @@ import { getEnv } from "@/lib/server/env";
 import { getSessionAuth } from "@/lib/server/auth";
 import { UsageChart } from "@/components/UsageChart";
 
-export const runtime = "edge";
 
 export default async function DashboardPage() {
   const env = getEnv();

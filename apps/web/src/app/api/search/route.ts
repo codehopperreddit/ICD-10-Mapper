@@ -6,7 +6,6 @@ import { logUsage } from "@/lib/server/usage-log";
 import { searchIcd } from "@/lib/server/search";
 import { json, apiError } from "@/lib/server/respond";
 
-export const runtime = "edge";
 
 const SEARCH_CACHE_TTL = 60 * 60;
 

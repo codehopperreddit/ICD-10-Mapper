@@ -5,7 +5,6 @@ import type { AuthContext } from "@/lib/server/auth";
 import { ingestLatest, findLatestCsv, DEFAULT_INGEST_PREFIX } from "@/lib/server/ingest";
 import { json, apiError } from "@/lib/server/respond";
 
-export const runtime = "edge";
 
 /** Only an admin Clerk session may touch ingestion. API keys are rejected. */
 async function requireAdmin(req: Request): Promise<Response | { env: Env; auth: AuthContext }> {

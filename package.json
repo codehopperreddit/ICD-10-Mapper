@@ -12,14 +12,14 @@
     "dev:web": "pnpm --filter @icd-mapper/web dev",
     "build:web": "pnpm --filter @icd-mapper/web build",
     "deploy:web": "pnpm --filter @icd-mapper/web deploy",
-    "db:migrate": "pnpm --filter @icd-mapper/web db:migrate",
-    "db:migrate:local": "pnpm --filter @icd-mapper/web db:migrate:local",
+    "db:migrate": "wrangler d1 migrations apply icd-mapper --remote",
+    "db:migrate:local": "wrangler d1 migrations apply icd-mapper --local",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
     "typescript": "^5.5.4",
-    "wrangler": "^3.95.0"
+    "wrangler": "^4.86.0"
   },
   "packageManager": "pnpm@9.7.0"
 }

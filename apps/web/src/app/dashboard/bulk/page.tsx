@@ -1,6 +1,5 @@
 import { BulkUploader } from "@/components/BulkUploader";
 
-export const runtime = "edge";
 
 export default function BulkPage() {
   return (
